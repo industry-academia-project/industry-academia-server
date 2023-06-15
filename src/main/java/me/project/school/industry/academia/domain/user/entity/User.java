@@ -13,14 +13,13 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private long id;
 
     @Column(nullable = false)
     private String email;
 
-    @Column
     private String password;
 
     @Column(nullable = false)
@@ -30,13 +29,17 @@ public class User {
     @Column(nullable = false)
     private UserRole userRole;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "author_id")
+    private Author author;
+
     @Builder
-    public User(String email, String name,  String password, UserRole userRole) {
+    public User(String email, String name,  String password, UserRole userRole, Author author) {
         this.email = email;
         this.name = name;
         this.password = PasswordEncoder(password);
         this.userRole = userRole;
-
+        this.author = author;
     }
 
     /**

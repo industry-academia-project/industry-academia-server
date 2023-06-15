@@ -15,17 +15,12 @@ public class UserController {
 
     @GetMapping("/info")
     @ResponseStatus(HttpStatus.OK)
-    public void  userInfo() {
+    public void userInfo(@RequestParam(required = false) String email ) {
         userService.userInfo();
     }
 
-//    @PutMapping("/info")
-//    public void
 
-    @GetMapping("/test")
-    public void Testing() {
-        System.out.println("come port:3000");
-    }
+
 
 
 }

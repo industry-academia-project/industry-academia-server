@@ -8,12 +8,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 @AllArgsConstructor
 @Builder
-public class LoginResponse {
-
+public class AuthResponse {
     private String message;
     private HttpStatus status;
-
-
-    private String accesstoken;
-    private String refreshToken;
 }
