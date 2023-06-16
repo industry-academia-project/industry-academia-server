@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @ToString
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "user")
 public class User {
@@ -29,7 +30,7 @@ public class User {
     @Column(nullable = false)
     private UserRole userRole;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER , cascade = CascadeType.PERSIST)
     @JoinColumn(name = "author_id")
     private Author author;
 

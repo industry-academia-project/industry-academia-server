@@ -72,9 +72,14 @@ public class TokenProvider {
         }
     }
 
+    private String authorizedBearer(String token) {
+        return token.replaceAll("^Bearer( )*", "");
+    }
+
     public User validateToken(String token) {
+
         return userRepository.findByEmail(
-                String.valueOf(parseToken(token, JwtAuth.ACCESS_TOKEN)
+                String.valueOf(parseToken(authorizedBearer(token), JwtAuth.ACCESS_TOKEN)
                         .get("userId")
                         .toString())
         ).orElseThrow(AuthException.NotFoundUserException::new);
